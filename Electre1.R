@@ -2,10 +2,10 @@
 ## Methode ELECTRE1
 ## Fait par :
   # AMHIL Younes
-  # ASSAAD AHMED Amine
+  # ASSAAD Ahmed Amine
   # KHALID Yahya
 
-## Definition de la fonction ELECTRE1
+## Definition de la fonction ELECTRE 1
 Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d){
   
   # Verification des conditions d'execution
