@@ -103,6 +103,6 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
     }
   }
   
-  # Trace le graph
+  # Traçage du graphe
   plot(graph.adjacency(t(matriceSurClassement)))
 }
