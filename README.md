@@ -3,7 +3,7 @@ Implementation de l'algorithme `ELimination Et Choix Traduisant la RÉalité` so
 ##
 Cet algorithme
 - Affiche la matrice des indices de concordance.
-- Affiche de la matrice des indices de discordance.
+- Affiche la matrice des indices de discordance.
 - Tracer le graphe de sur-classement.
 
 Exemple d'execution sous [RStudio](https://www.rstudio.com/products/rstudio/download/#download):
