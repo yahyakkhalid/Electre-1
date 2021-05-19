@@ -24,7 +24,7 @@ Exemple d'execution sous [RStudio](https://www.rstudio.com/products/rstudio/down
   # Appel à la fonction Electre1
   Electre1(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d)
 ```
-## Fait par :
+### Fait par :
   - AMHIL Younes
   - ASSAAD AHMED Amine
   - KHALID Yahya
