@@ -70,12 +70,12 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
           if(tabPerformance[i, j] == tabPerformance[k, j])
             pegal <- pegal + poidsCriteres[j]
         }
-        # coeff. de concordance
+        # coeff. de concordance (P= + P+)/P 
         matriceConcordance[i, k] <- (pplus + pegal)/sum(poidsCriteres)
         
         # Calcul du max(gj(Ak) - gj(Ai)), j appartient a J-(Ai,Ak)
         max <- max(tabPerformance[k, ] - tabPerformance[i, ])
-        # coeff. de discordance
+        # coeff. de discordance max(gj(Ak) - gj(Ai))/delta 
         matriceDiscordance[i, k] <- max/delta
         
         # Matrice de surclassement : affiche des 0 et des 1 obtenus depuis la relation de surclassement
