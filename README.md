@@ -1,7 +1,7 @@
 # [Electre 1](https://fr.wikipedia.org/wiki/ELECTRE#M%C3%A9thode_ELECTRE_I)
 Implementation de l'algorithme `ELimination Et Choix Traduisant la RÉalité` sous R.
 ##
-Cet algorithme
+Ce script
 - Affiche la matrice des indices de concordance.
 - Affiche la matrice des indices de discordance.
 - Trace le graphe de surclassement.
@@ -24,4 +24,4 @@ Exemple d'execution sous [RStudio](https://www.rstudio.com/products/rstudio/down
   Electre1(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d)
 ```
 #### N.B
-Si l'execution de cet algorithme prend beaucoup de temps, omettre la clause `if` dans la ligne `24`
+Si l'execution de ce script prend beaucoup de temps, omettre la clause `if` dans la ligne `24`
