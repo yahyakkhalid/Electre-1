@@ -75,10 +75,15 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
           if (temp >= max)
             max <- temp
         }
+        
         # coeff. de concordance
         matriceConcordance[i, k] <- (pplus + pegal)/sum(poidsCriteres)
         # coeff. de discordance
         matriceDiscordance[i, k] <- max/delta
+        
+        # Matrice de surclassement : affiche des 0 et des 1 obtenus depuis la relation de surclassement
+        if(matriceConcordance[i, k] >= seuil_c & matriceDiscordance[i, k] <= seuil_d)
+          matriceSurClassement[i, k] <- 1
       }
     }
   }
@@ -88,13 +93,23 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
   print("Matrice de discordance")
   print(matriceDiscordance)
   
-  # Matrice de surclassement : affiche des 0 et des 1 obtenus depuis la relation de surclassement
-  for (i in 1:nbr_lignes)
-    for (k in 1:nbr_lignes)
-      if (i != k)
-        if(matriceConcordance[i, k] >= seuil_c & matriceDiscordance[i, k] <= seuil_d)
-          matriceSurClassement[i, k] <- 1
-  
   # Traçage du graphe
   plot(graph.adjacency(matriceSurClassement))
 }
+
+# Cas d'etude
+tabPerformance <- matrix(c(10, 0, 0, 20, 20,
+                           20, 20, 5, 10, 5,
+                           10, 10, 5, 5, 0,
+                           10, 15, 20, 10, 16,
+                           16, 10, 10, 13, 16,
+                           10, 7, 13, 13, 13), nrow=6)
+
+actions <- c("P1", "P2", "P3", "P4", "P5", "P6")
+criteres <- c("C1", "C2", "C3", "C4", "C5")
+poidsCriteres <- c(3, 2, 3, 1, 1)
+seuil_c <- 0.9
+seuil_d <- 0.15
+
+# Appel de la fonction
+Electre1(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d)
