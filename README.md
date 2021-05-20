@@ -24,3 +24,5 @@ Exemple d'execution sous [RStudio](https://www.rstudio.com/products/rstudio/down
   # Appel de la fonction Electre1
   Electre1(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d)
 ```
+#### N.B
+Si l'execution de cet algorithme prend beaucoup de temps, omettre la clause `if` dans la ligne `24`
