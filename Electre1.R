@@ -1,9 +1,9 @@
 
 ## Methode ELECTRE1
 ## Fait par :
-  # AMHIL Younes
-  # ASSAAD Ahmed Amine
-  # KHALID Yahya
+# AMHIL Younes
+# ASSAAD Ahmed Amine
+# KHALID Yahya
 
 ## Definition de la fonction ELECTRE 1
 Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d){
@@ -23,7 +23,7 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
   
   if(!("igraph" %in% rownames(installed.packages())))
     stop("Veuillez installer le package 'igraph'")
-
+  
   # Importation de la librairie igraph
   library(igraph)
   
@@ -42,15 +42,14 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
                                dimnames = list(actions, actions))
   
   matriceSurClassement <- matrix(rep(0, nbr_lignes*nbr_lignes),
-                               nbr_lignes,
-                               nbr_lignes,
-                               dimnames = list(actions, actions))
+                                 nbr_lignes,
+                                 nbr_lignes,
+                                 dimnames = list(actions, actions))
   
   # Calcul de delta (l'amplitude maximum de tous les criteres) :
   temp <- c()
-  for(j in 1:nbr_col){
+  for(j in 1:nbr_col)
     temp[j] <- max(tabPerformance[, j]) - min(tabPerformance[, j])
-  }
   delta <- max(temp)
   
   # Calcul du matrice de concordance & discordance
@@ -64,25 +63,22 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
         
         for(j in 1:nbr_col){
           # Calcul du p+
-          if(tabPerformance[i, j] > tabPerformance[k, j]){
+          if(tabPerformance[i, j] > tabPerformance[k, j])
             pplus <- pplus + poidsCriteres[j]
-          }
           
           # Calcul du p=
-          if(tabPerformance[i, j] == tabPerformance[k, j]){
+          if(tabPerformance[i, j] == tabPerformance[k, j])
             pegal <- pegal + poidsCriteres[j]
-          }
           
           # Calcul du : max(gj(Ak) - gj(Ai)) ou j appartient a J-(Ai,Ak)
           temp <- tabPerformance[k, j] - tabPerformance[i, j]
-          if (temp >= max) {
+          if (temp >= max)
             max <- temp
-          }
         }
         # coeff. de concordance
         matriceConcordance[i, k] <- (pplus + pegal)/sum(poidsCriteres)
         # coeff. de discordance
-        matriceDiscordance[i, k] = max/delta
+        matriceDiscordance[i, k] <- max/delta
       }
     }
   }
@@ -93,16 +89,12 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
   print(matriceDiscordance)
   
   # Matrice de surclassement : affiche des 0 et des 1 obtenus depuis la relation de surclassement
-  for (i in 1:nbr_lignes){
-    for (j in 1:nbr_lignes){
-      if (i != j){
-        if((t(matriceConcordance)[i,j]>=seuil_c)&&(t(matriceDiscordance)[i,j]<=seuil_d)){
-          matriceSurClassement[i,j]=1
-        }
-      }
-    }
-  }
+  for (i in 1:nbr_lignes)
+    for (k in 1:nbr_lignes)
+      if (i != k)
+        if(matriceConcordance[i, k] >= seuil_c & matriceDiscordance[i, k] <= seuil_d)
+          matriceSurClassement[i, k] <- 1
   
   # Traçage du graphe
-  plot(graph.adjacency(t(matriceSurClassement)))
+  plot(graph.adjacency(matriceSurClassement))
 }
