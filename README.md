@@ -21,6 +21,6 @@ Exemple d'execution sous [RStudio](https://www.rstudio.com/products/rstudio/down
   seuil_c <- 0.9
   seuil_d <- 0.15
   
-  # Appel à la fonction Electre1
+  # Appel de la fonction Electre1
   Electre1(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d)
 ```
