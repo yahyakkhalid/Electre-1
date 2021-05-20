@@ -59,25 +59,22 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
         
         pplus <- 0
         pegal <- 0
-        max <- 0
         
+        # Calcul de p+ et p=
         for(j in 1:nbr_col){
-          # Calcul du p+
+          # p+
           if(tabPerformance[i, j] > tabPerformance[k, j])
             pplus <- pplus + poidsCriteres[j]
           
-          # Calcul du p=
+          # p=
           if(tabPerformance[i, j] == tabPerformance[k, j])
             pegal <- pegal + poidsCriteres[j]
-          
-          # Calcul du : max(gj(Ak) - gj(Ai)) ou j appartient a J-(Ai,Ak)
-          temp <- tabPerformance[k, j] - tabPerformance[i, j]
-          if (temp >= max)
-            max <- temp
         }
-        
         # coeff. de concordance
         matriceConcordance[i, k] <- (pplus + pegal)/sum(poidsCriteres)
+        
+        # Calcul du max(gj(Ak) - gj(Ai)), j appartient a J-(Ai,Ak)
+        max <- max(tabPerformance[k, ] - tabPerformance[i, ])
         # coeff. de discordance
         matriceDiscordance[i, k] <- max/delta
         
