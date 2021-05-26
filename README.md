@@ -2,8 +2,6 @@
 Implementation de l'algorithme `ELimination Et Choix Traduisant la RÉalité` sous R.
 ##
 Ce script
-- Affiche la matrice des indices de concordance.
-- Affiche la matrice des indices de discordance.
 - Trace le graphe de surclassement.
 
 Avant d'executer le script, vous devez installer le package `igraph`.
@@ -25,6 +23,3 @@ Exemple d'execution sous [RStudio](https://www.rstudio.com/products/rstudio/down
   # Appel de la fonction Electre1
   Electre1(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d)
 ```
-
-### N.B.
-Si l'execution de ce script prend beaucoup de temps, omettre la clause `if` dans la ligne `24`
