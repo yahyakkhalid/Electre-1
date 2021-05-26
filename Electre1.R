@@ -21,25 +21,12 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
   if(!is.numeric(poidsCriteres))
     stop("Type de donnees des poids criteres n'est pas compatible.")
   
-  if(!("igraph" %in% rownames(installed.packages())))
-    stop("Veuillez installer le package 'igraph'")
-  
   # Importation de la librairie igraph
   library(igraph)
   
   # Declaration des variables
   nbr_lignes <- nrow(tabPerformance)
   nbr_col <- ncol(tabPerformance)
-  
-  matriceConcordance <- matrix(rep(0, nbr_lignes*nbr_lignes),
-                               nbr_lignes,
-                               nbr_lignes,
-                               dimnames = list(actions, actions))
-  
-  matriceDiscordance <- matrix(rep(0, nbr_lignes*nbr_lignes),
-                               nbr_lignes,
-                               nbr_lignes,
-                               dimnames = list(actions, actions))
   
   matriceSurClassement <- matrix(rep(0, nbr_lignes*nbr_lignes),
                                  nbr_lignes,
@@ -56,7 +43,6 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
   for(i in 1:nbr_lignes){
     for(k in 1:nbr_lignes){
       if(i != k){
-        
         pplus <- 0
         pegal <- 0
         
@@ -70,23 +56,20 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
           if(tabPerformance[i, j] == tabPerformance[k, j])
             pegal <- pegal + poidsCriteres[j]
         }
+        
         # coeff. de concordance (P= + P+)/P 
-        matriceConcordance[i, k] <- (pplus + pegal)/sum(poidsCriteres)
+        C <- (pplus + pegal)/sum(poidsCriteres)
         
         # coeff. de discordance max(gj(Ak) - gj(Ai))/delta ou j appartient a J-(Ai,Ak)
-        matriceDiscordance[i, k] <- max(tabPerformance[k, ] - tabPerformance[i, ])/delta
+        D <- max(tabPerformance[k, ] - tabPerformance[i, ])/delta
         
-        # Matrice de surclassement : affiche des 0 et des 1 obtenus depuis la relation de surclassement
-        if(matriceConcordance[i, k] >= seuil_c & matriceDiscordance[i, k] <= seuil_d)
+        # Matrice de surclassement
+        ## affiche des 0 et des 1 obtenus depuis la relation de surclassement
+        if(C >= seuil_c & D <= seuil_d)
           matriceSurClassement[i, k] <- 1
       }
     }
   }
-  
-  print("Matrice de concordance")
-  print(matriceConcordance)
-  print("Matrice de discordance")
-  print(matriceDiscordance)
   
   # Traçage du graphe
   plot(graph.adjacency(matriceSurClassement))
