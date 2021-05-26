@@ -21,7 +21,7 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
   if(!is.numeric(poidsCriteres))
     stop("Type de donnees des poids criteres n'est pas compatible.")
   
-  # Importation de la librairie igraph
+  # Importation du package igraph
   library(igraph)
   
   # Declaration des variables
