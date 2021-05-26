@@ -6,7 +6,9 @@ Ce script
 - Affiche la matrice des indices de discordance.
 - Trace le graphe de surclassement.
 
-Avant d'executer le script, vous devez installer le package ![#92433A](igraph) `#92433A`.
+```diff
+# Avant d'executer le script, vous devez installer le package `igraph`
+```
 
 Exemple d'execution sous [RStudio](https://www.rstudio.com/products/rstudio/download/#download):
 ```R
@@ -25,5 +27,8 @@ Exemple d'execution sous [RStudio](https://www.rstudio.com/products/rstudio/down
   # Appel de la fonction Electre1
   Electre1(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d)
 ```
-####  ![#f03c15](N.B.) `#f03c15`
+```diff
+- N.B.
+```
+
 Si l'execution de ce script prend beaucoup de temps, omettre la clause `if` dans la ligne `24`
