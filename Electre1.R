@@ -6,7 +6,7 @@
 # KHALID Yahya
 
 ## Definition de la fonction ELECTRE 1
-Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d){
+Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, minMaxCriteres, seuil_c, seuil_d){
   
   # Verification des conditions d'execution
   if(nrow(tabPerformance) != length(actions))
@@ -21,14 +21,26 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
   if(!is.numeric(poidsCriteres))
     stop("Type de donnees des poids criteres n'est pas compatible.")
   
-  # Importation du package igraph
+  # Importation de la librairie igraph
   library(igraph)
   
   # Declaration des variables
   nbr_lignes <- nrow(tabPerformance)
   nbr_col <- ncol(tabPerformance)
+  
   matriceSurClassement <- matrix(0, nbr_lignes, nbr_lignes)
   
+  # Min-max critères
+  if(!(is.na(match("min", minMaxCriteres)))){
+    for(j in 1:nbr_col){
+      vmax <- max(tabPerformance[, j])
+      if (minMaxCriteres[j] == "min"){
+        for (i in 1:nbr_lignes){
+          tabPerformance[i,j] =  vmax - tabPerformance[i,j]
+        }
+      }
+    }
+  }
   # Calcul de delta (l'amplitude maximum de tous les criteres) :
   temp <- c()
   for(j in 1:nbr_col)
