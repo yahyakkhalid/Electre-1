@@ -21,7 +21,7 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, minMaxCri
   if(!is.numeric(poidsCriteres))
     stop("Type de donnees des poids criteres n'est pas compatible.")
   
-  # Importation de la librairie igraph
+  # Importation du package igraph
   library(igraph)
   
   # Declaration des variables
@@ -31,16 +31,12 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, minMaxCri
   matriceSurClassement <- matrix(0, nbr_lignes, nbr_lignes)
   
   # Min-max critères
-  if(!(is.na(match("min", minMaxCriteres)))){
-    for(j in 1:nbr_col){
-      vmax <- max(tabPerformance[, j])
-      if (minMaxCriteres[j] == "min"){
-        for (i in 1:nbr_lignes){
-          tabPerformance[i,j] =  vmax - tabPerformance[i,j]
-        }
-      }
-    }
-  }
+  if(!(is.na(match("min", minMaxCriteres))))
+    for(j in 1:nbr_col)
+      if (minMaxCriteres[j] == "min")
+        for (i in 1:nbr_lignes)
+          tabPerformance[i,j] =  max(tabPerformance[, j]) - tabPerformance[i,j]
+
   # Calcul de delta (l'amplitude maximum de tous les criteres) :
   temp <- c()
   for(j in 1:nbr_col)
