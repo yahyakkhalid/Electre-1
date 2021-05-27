@@ -27,11 +27,7 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, seuil_c, 
   # Declaration des variables
   nbr_lignes <- nrow(tabPerformance)
   nbr_col <- ncol(tabPerformance)
-  
-  matriceSurClassement <- matrix(rep(0, nbr_lignes*nbr_lignes),
-                                 nbr_lignes,
-                                 nbr_lignes,
-                                 dimnames = list(actions, actions))
+  matriceSurClassement <- matrix(0, nbr_lignes, nbr_lignes)
   
   # Calcul de delta (l'amplitude maximum de tous les criteres) :
   temp <- c()
