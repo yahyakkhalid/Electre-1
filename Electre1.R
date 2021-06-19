@@ -1,11 +1,3 @@
-
-## Methode ELECTRE1
-## Fait par :
-# AMHIL Younes
-# ASSAAD Ahmed Amine
-# KHALID Yahya
-
-## Definition de la fonction ELECTRE 1
 Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, minMaxCriteres, seuil_c, seuil_d){
   
   # Verification des conditions d'execution
@@ -27,7 +19,6 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, minMaxCri
   # Declaration des variables
   nbr_lignes <- nrow(tabPerformance)
   nbr_col <- ncol(tabPerformance)
-  
   matriceSurClassement <- matrix(0, nbr_lignes, nbr_lignes)
   
   # Min-max critères
@@ -43,7 +34,7 @@ Electre1 <- function(tabPerformance, actions, criteres, poidsCriteres, minMaxCri
     temp[j] <- max(tabPerformance[, j]) - min(tabPerformance[, j])
   delta <- max(temp)
   
-  # Calcul du matrice de concordance & discordance
+  # Calcul du matrice surclassement
   for(i in 1:nbr_lignes){
     for(k in 1:nbr_lignes){
       if(i != k){
