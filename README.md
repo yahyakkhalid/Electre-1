@@ -22,5 +22,5 @@ Exemple d'execution sous [RStudio](https://www.rstudio.com/products/rstudio/down
   seuil_d <- 0.15
   
   # Appel de la fonction Electre1
-  Electre1(tabPerformance, actions, criteres, poidsCriteres, seuil_c, seuil_d)
+  Electre1(tabPerformance, actions, criteres, poidsCriteres, minMaxCriteres, seuil_c, seuil_d)
 ```
